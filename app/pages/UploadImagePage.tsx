@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { set } from "firebase/database";
+import Image from "next/image";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ const UploadImagePage = (props: Props) => {
 		const storageRef = ref(storage, "images/" + fileName);
 		setLoading(true);
 		try {
-			const res = await uploadBytes(storageRef, file);
+			await uploadBytes(storageRef, file);
 			const downloadUrl = await getDownloadURL(storageRef);
 			setImageUrl(downloadUrl);
 		} catch (error) {
@@ -50,11 +51,13 @@ const UploadImagePage = (props: Props) => {
 				{
 					// If there is an image, show it
 					!loading && imageUrl && !derainedImageUrl && (
-						<div className="flex flex-col items-center justify-center w-[50%]">
-							<img
-								className="w-96 h-auto"
+						<div className="flex flex-col items-center justify-center w-[50%] max-h-96 h-full">
+							<Image
+								className="w-auto h-full"
 								src={imageUrl}
 								alt="Uploaded image"
+								width={999}
+								height={999}
 							/>
 							<div className="flex flex-col items-center justify-center w-full mt-4">
 								{/* // style the label button */}
@@ -66,7 +69,7 @@ const UploadImagePage = (props: Props) => {
 								<button
 									onClick={derainImage}
 									className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-md cursor-pointer hover:bg-gray-700 mt-5">
-									Generate De-rained Image
+									Generate Upscaled Image
 								</button>
 								<input
 									className="hidden"
@@ -83,17 +86,17 @@ const UploadImagePage = (props: Props) => {
 					)
 				}
 				{
-					// If there is a derained image, show it
+					// If there is an upscaled image, show it
 					!loading && derainedImageUrl && imageUrl && (
 						<div className="flex flex-col items-center justify-center w-[50%]">
 							<div className="flex gap-3">
-								<img
+								{/*<img
 									className="w-1/2 h-auto"
 									src={imageUrl}
 									alt="Uploaded image"
-								/>
+					/>*/}
 								<img
-									className="w-1/2 h-auto"
+									className="w-full h-auto"
 									src={derainedImageUrl}
 									alt="Uploaded image"
 								/>
