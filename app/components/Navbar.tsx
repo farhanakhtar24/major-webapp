@@ -2,6 +2,7 @@
 import React from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import Link from "next/link";
 
 type Props = {};
 
@@ -16,9 +17,11 @@ const Navbar = (props: Props) => {
 		<nav className="w-screen bg-[#8eb8d0] h-fit overflow-hidden">
 			<div className="py-4 lg:px-8 px-4 max-w-[1280px] h-[10vh] m-auto text-white flex items-center justify-between">
 				<div>
-					<h1 className="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
+					<Link
+						href={"/"}
+						className="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">
 						Image Super-resolution
-					</h1>
+					</Link>
 				</div>
 				<div className="md:flex hidden lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center">
 					<span className="group">

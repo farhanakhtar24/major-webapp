@@ -51,9 +51,9 @@ const UploadImagePage = (props: Props) => {
 				{
 					// If there is an image, show it
 					!loading && imageUrl && !derainedImageUrl && (
-						<div className="flex flex-col items-center justify-center w-[50%] max-h-96 h-full">
+						<div className="flex flex-col items-center justify-center w-[70%] max-h-96 h-full">
 							<Image
-								className="w-auto h-full"
+								className="flex w-auto h-full aspect-auto"
 								src={imageUrl}
 								alt="Uploaded image"
 								width={999}
@@ -88,19 +88,14 @@ const UploadImagePage = (props: Props) => {
 				{
 					// If there is an upscaled image, show it
 					!loading && derainedImageUrl && imageUrl && (
-						<div className="flex flex-col items-center justify-center w-[50%]">
-							<div className="flex gap-3">
-								{/*<img
-									className="w-1/2 h-auto"
-									src={imageUrl}
-									alt="Uploaded image"
-					/>*/}
-								<img
-									className="w-full h-auto"
-									src={derainedImageUrl}
-									alt="Uploaded image"
-								/>
-							</div>
+						<div className="flex flex-col items-center justify-center w-[70%] max-h-96 h-full">
+							<Image
+								className="flex w-auto h-full aspect-auto"
+								src={derainedImageUrl}
+								alt="Upscaled image"
+								width={999}
+								height={999}
+							/>
 							<div className="flex flex-col items-center justify-center w-full mt-4">
 								{/* // style the label button */}
 								<label
